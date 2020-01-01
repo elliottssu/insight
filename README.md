@@ -14,7 +14,7 @@
 [![Issues](https://img.shields.io/github/issues/Elliottssu/insight)](https://github.com/Elliottssu/insight/issues)
 [![License](https://img.shields.io/github/license/Elliottssu/insight)](https://github.com/Elliottssu/insight/blob/master/LICENSE)
 
-![insight 预览](https://upload-images.jianshu.io/upload_images/3502567-6f459fd098a0cfcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![insight 预览](https://upload-images.jianshu.io/upload_images/3502567-6c6527d1709f03d8.png)
 ## 快速启动
 
 ```shell
