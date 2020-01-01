@@ -1,0 +1,25 @@
+{
+  "name": "insight",
+  "version": "1.1.0",
+  "description": "Insight是一个可以管理企业微信群机器人的小工具，可以非常方便的往群里发布即时消息和定时消息。",
+  "dependencies": {
+    "standard-version": "^7.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "release-f": "standard-version -f",
+    "release-major": "standard-version -r major",
+    "release-minor": "standard-version -r minor",
+    "release-patch": "standard-version -r patch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elliottssu/insight.git"
+  },
+  "author": "Elliottssu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Elliottssu/insight/issues"
+  },
+  "homepage": "https://github.com/Elliottssu/insight/issues#readme"
+}
