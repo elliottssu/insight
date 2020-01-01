@@ -1,4 +1,4 @@
-[📖使用文档](https://github.com/Elliottssu/insight/wiki/%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3) | [❓常见问题](https://github.com/Elliottssu/insight/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98) | [💙创作历程](https://github.com/Elliottssu/insight/wiki/%E5%88%9B%E4%BD%9C%E5%8E%86%E7%A8%8B)
+[📖使用文档](https://github.com/Elliottssu/insight/wiki/%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3) | [❓常见问题](https://github.com/Elliottssu/insight/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98) | [💙创作历程](https://www.jianshu.com/p/83ddd46b3d5d)
 
 <h2 align="center">
     <img src="https://upload-images.jianshu.io/upload_images/3502567-134d75146e2f2a31.png" alt="Insight" height="40">
@@ -90,4 +90,4 @@ Insight是一个**可以管理企业微信群机器人的小工具，在这里�
 非常欢迎大家提出改进优化建议，所有合理的改动、优化、修正，新的组件，或者文档的修正、更新 相关的提交都会被接收。
 
 ## 关于
-想了解“科幻”是怎样来的？这里有一份背后的故事分享，我们的[创作历程](https://github.com/Elliottssu/insight/wiki/%E5%88%9B%E4%BD%9C%E5%8E%86%E7%A8%8B)😉。
+想了解“科幻”是怎样来的？这里有一份背后的故事分享，我们的[创作历程](https://www.jianshu.com/p/83ddd46b3d5d)😉。
