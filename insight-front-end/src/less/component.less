@@ -1,0 +1,253 @@
+
+@import './variables.less';
+
+// 登录模块
+.login-wrapper {
+    height: 100vh;
+}
+.login-form {
+    min-width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -200px;
+    z-index: 10;
+}
+.login-title {
+    text-align: center;
+}
+
+.solar {
+    position: absolute;
+    overflow: hidden;
+    perspective: 800px;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+.login-bg {
+    height: 100vh;
+    overflow: hidden;
+}
+.planet {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 1200px;
+    width: 1200px;
+    border-radius: 600px;
+    transition: opacity 2s 0.8s, box-shadow 0s 0s, -webkit-transform 2.8s 0.23s cubic-bezier(0.33, 0, 0, 1);
+    transition: transform 2.8s 0.23s cubic-bezier(0.33, 0, 0, 1), opacity 2s 0.8s, box-shadow 0s 0s;
+    transition: transform 2.8s 0.23s cubic-bezier(0.33, 0, 0, 1), opacity 2s 0.8s, box-shadow 0s 0s, -webkit-transform 2.8s 0.23s cubic-bezier(0.33, 0, 0, 1);
+    background-size: 1140px 910px !important;
+    top: auto;
+    bottom: -1050px;
+    transform: translateZ(0px) translateY(0) rotatex(4deg) scaleX(0.89);
+    opacity: 2;
+    animation: planet 60s 1s infinite linear;
+}
+.mars {
+    background: url(../images/mars-texture.jpg);
+    box-shadow: 0 -590px 150px black inset, 0 0px 130px 40px #e86363 inset, 0 0px 23px 4px #e86363 inset, 0 -10px 130px #6b261a;
+}
+.overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin: auto;
+    width: 1800px;
+    height: 620px;
+    top: auto;
+    transform: scale(5);
+    top: -240px;
+    left: -303px;
+    opacity: 1;
+    border-radius: 100%;
+    z-index: 0;
+    box-shadow: 0px -195px 215px 110px black inset;
+}
+
+@keyframes planet {
+    from {
+        background-position-y: 0px;
+    }
+    to {
+        background-position-y: -1000px;
+    }
+}
+
+// 公共部分
+.hover-part {
+    .hover-item {
+        visibility: hidden;
+        transition: all ease-in-out 0.1s ;
+    }
+    &:hover .hover-item {
+        visibility: visible;
+    }
+}
+
+.select-small {
+    font-size: 12px;
+}
+
+.select-simple {
+    .ant-select-selection--single .ant-select-selection__rendered {
+        margin-right: 11px;
+        display: flex;
+        justify-content: center;
+    }
+}
+.select-list {
+    ul::-webkit-scrollbar{
+        width:4px;
+        height:10px;
+    }
+    ul::-webkit-scrollbar-track{
+    background: rgb(59, 63, 80);
+    border-radius:2px;
+    }
+    ul::-webkit-scrollbar-thumb{
+    background: #a09e9e;
+    border-radius:10px;
+    }
+    ul::-webkit-scrollbar-corner{
+    background: #179a16;
+    }
+    .ant-select-dropdown-menu-item {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+// Robot
+
+.robot-warp {
+    display: flex;
+    flex-wrap: wrap;
+    .robot-item {
+      padding: 15px 20px 15px 0;
+     
+    }
+    .robot-header {
+      padding: 8px;
+      height: 120px;
+      width: 120px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      transition: all 0.1s ease-in;
+      position: relative;
+      cursor: pointer;
+      &:hover{
+        border: 1px solid @primary-color
+      }
+      &.robot-active{
+        cursor: default;
+        border: 1px solid @primary-color
+      }
+  
+    }
+    .robot-avatar {
+      height: 100%;
+      width: 100%;
+      border-radius: 10px;
+      border:1px solid transparent
+    }
+   
+    .robot-footer {
+      font-size: 14px;
+      text-align: center;
+      margin-top: 10px;
+      color: @white-normal
+    }
+    .robot-sign {
+      height: 14px;
+      width: 14px;
+      background: #61c361;
+      box-shadow: 0px 0px 10px rgba(155, 158, 155, 0.55);
+      border-radius: 50%;
+      position: absolute;
+      top: 6px;
+      right: 6px;
+    }
+    .robot-empty {
+      background: transparent!important;
+      border: 1px solid rgba(170, 170, 170, 0.8);
+    }
+  }
+  
+  .robot-warp-empty {
+    justify-content: center;
+    .robot-item {
+      padding: 15px 20px;
+    }
+  }
+
+  .card-title {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid rgba(232, 232, 232, 0.11);
+  }
+  .card-content {
+    min-height: 100px;
+    color: @white-normal;
+    font-size: 12px
+  }
+  
+  .card-title-item {
+    margin: 0 20px 0 0;
+    color: @white-light;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.1s ease-in;
+    display: inline-block;
+  
+  }
+  .title-item-active {
+    color: @white-normal;
+    border-bottom: 1px solid @white-normal;
+    cursor: default;
+  }
+  
+  .content-item {
+    padding: 5px 5px 5px 0;
+    height: 30px;
+    &:hover {
+      background-color: rgba(222, 222, 222, 0.05)
+    }
+  }
+  
+  .gradient(@leftColor:red,@rightColor:blue){
+    background: -webkit-linear-gradient(bottom left, @leftColor , @rightColor);
+    background: -o-linear-gradient(bottom left, @leftColor, @rightColor); 
+    background: -moz-linear-gradient(bottom left, @leftColor, @rightColor); 
+    background: linear-gradient(to bottom left, @leftColor , @rightColor); 
+  }
+    
+  .robot-item:nth-child(7n+1) .robot-avatar{
+    .gradient(#f535a8, #f072be)
+  }
+  .robot-item:nth-child(7n+2) .robot-avatar{
+    .gradient(#7242bf, #8362b8)
+  }
+  .robot-item:nth-child(7n+3) .robot-avatar{
+    .gradient(#366ed8, #5783d3)
+  }
+  .robot-item:nth-child(7n+4) .robot-avatar{
+    .gradient(#f07763, #f5a99c)
+  }
+  .robot-item:nth-child(7n+5) .robot-avatar{
+    .gradient(#2a86ad, #6a99ad)
+  }
+  .robot-item:nth-child(7n+6) .robot-avatar{
+    .gradient(#803a3a, #885555)
+  }
+  .robot-item:nth-child(7n+7) .robot-avatar{
+    .gradient(#35b0ab, #78b4b2)
+  }
+    

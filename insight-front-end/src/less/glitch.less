@@ -1,0 +1,164 @@
+
+/* Glitch CSS (modified and masked), from css-tricks: https://css-tricks.com/glitch-effect-text-images-svg/ */
+
+.glitch {
+  color: white;
+  position: relative;
+  width: 110px;
+  margin: 0 auto;
+}
+
+@keyframes noise-anim {
+  0% {
+    clip-path: inset(56% 0 43% 0);
+  }
+  5% {
+    clip-path: inset(97% 0 3% 0);
+  }
+  10% {
+    clip-path: inset(92% 0 9% 0);
+  }
+  15% {
+    clip-path: inset(36% 0 11% 0);
+  }
+  20% {
+    clip-path: inset(36% 0 4% 0);
+  }
+  25% {
+    clip-path: inset(89% 0 3% 0);
+  }
+  30% {
+    clip-path: inset(71% 0 29% 0);
+  }
+  35% {
+    clip-path: inset(70% 0 27% 0);
+  }
+  40% {
+    clip-path: inset(47% 0 27% 0);
+  }
+  45% {
+    clip-path: inset(92% 0 4% 0);
+  }
+  50% {
+    clip-path: inset(55% 0 46% 0);
+  }
+  55% {
+    clip-path: inset(26% 0 71% 0);
+  }
+  60% {
+    clip-path: inset(97% 0 1% 0);
+  }
+  65% {
+    clip-path: inset(56% 0 24% 0);
+  }
+  70% {
+    clip-path: inset(75% 0 3% 0);
+  }
+  75% {
+    clip-path: inset(59% 0 6% 0);
+  }
+  80% {
+    clip-path: inset(6% 0 32% 0);
+  }
+  85% {
+    clip-path: inset(12% 0 40% 0);
+  }
+  90% {
+    clip-path: inset(54% 0 29% 0);
+  }
+  95% {
+    clip-path: inset(97% 0 3% 0);
+  }
+  100% {
+    clip-path: inset(63% 0 33% 0);
+  }
+}
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 7px;
+  text-shadow: -1px 0 #00c8ff;
+  top: 0;
+  color: white;
+  background: black;
+  overflow: hidden;
+  animation: noise-anim 2s infinite linear alternate-reverse;
+}
+
+@keyframes noise-anim-2 {
+  0% {
+    clip-path: inset(52% 0 42% 0);
+  }
+  5% {
+    clip-path: inset(20% 0 9% 0);
+  }
+  10% {
+    clip-path: inset(56% 0 6% 0);
+  }
+  15% {
+    clip-path: inset(65% 0 18% 0);
+  }
+  20% {
+    clip-path: inset(34% 0 24% 0);
+  }
+  25% {
+    clip-path: inset(13% 0 60% 0);
+  }
+  30% {
+    clip-path: inset(85% 0 3% 0);
+  }
+  35% {
+    clip-path: inset(72% 0 24% 0);
+  }
+  40% {
+    clip-path: inset(89% 0 7% 0);
+  }
+  45% {
+    clip-path: inset(70% 0 15% 0);
+  }
+  50% {
+    clip-path: inset(18% 0 57% 0);
+  }
+  55% {
+    clip-path: inset(26% 0 75% 0);
+  }
+  60% {
+    clip-path: inset(38% 0 46% 0);
+  }
+  65% {
+    clip-path: inset(18% 0 16% 0);
+  }
+  70% {
+    clip-path: inset(12% 0 10% 0);
+  }
+  75% {
+    clip-path: inset(4% 0 29% 0);
+  }
+  80% {
+    clip-path: inset(81% 0 20% 0);
+  }
+  85% {
+    clip-path: inset(42% 0 2% 0);
+  }
+  90% {
+    clip-path: inset(53% 0 21% 0);
+  }
+  95% {
+    clip-path: inset(89% 0 3% 0);
+  }
+  100% {
+    clip-path: inset(58% 0 39% 0);
+  }
+}
+.glitch::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 7px;
+  text-shadow: 1px 0 #b84943;
+  top: 0;
+  color: white;
+  background: black;
+  overflow: hidden;
+  animation: noise-anim-2 15s infinite linear alternate-reverse;
+}
+/* end glitch css from css-tricks.com */
