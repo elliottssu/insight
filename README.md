@@ -18,7 +18,7 @@
 ## 快速启动
 
 ```shell
-开发环境
+# 本地开发环境
 # 启动前端
 cd insight-front-end 
 npm install
