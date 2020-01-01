@@ -14,9 +14,11 @@
 [![Issues](https://img.shields.io/github/issues/Elliottssu/insight)](https://github.com/Elliottssu/insight/issues)
 [![License](https://img.shields.io/github/license/Elliottssu/insight)](https://github.com/Elliottssu/insight/blob/master/LICENSE)
 
+![insight 预览](https://upload-images.jianshu.io/upload_images/3502567-6f459fd098a0cfcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ## 快速启动
 
 ```shell
+开发环境
 # 启动前端
 cd insight-front-end 
 npm install
@@ -80,7 +82,7 @@ Insight是一个**可以管理企业微信群机器人的小工具，在这里�
 想知道这些问题的答案？点击[常见问题](https://github.com/Elliottssu/insight/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)，了解更多。
 
 ## 👨🏻‍💻👩🏻‍💻交流群
-我们会活跃在社区和交流群，可以在里面解答问题、探讨功能需求以及技术方案等等。您可以通过下面三种方式和我们沟通：
+我们会活跃在社区和交流群，可以在里面解答问题、探讨功能需求以及技术方案等等。您可以通过下面两种方式和我们沟通：
 1. [🍔Insight社区](https://support.qq.com/products/113180)
 2. [ 😈Github Issues](https://github.com/Elliottssu/insight/issues)
 
