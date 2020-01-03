@@ -26,7 +26,7 @@ class RobotForm extends React.Component {
   componentWillMount() {
     const { robotInfo } = this.props;
 
-    if (robotInfo) {
+    if (robotInfo && robotInfo.status === 'public') {
       this.setState({ isSwitchCheck: true });
     }
   }
