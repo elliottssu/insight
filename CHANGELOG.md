@@ -3,6 +3,8 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ## [1.3.0](https://github.com/Elliottssu/insight/compare/v1.2.0...v1.3.0) (2020-01-03)
+1. 添加eslint
+2. 修复编辑机器人的公共私人状态提醒
 
 ## 1.2.0 (2020-01-01)
 1. 一键发布消息，支持@所有人、指定人，方便快捷。
