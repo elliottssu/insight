@@ -9,32 +9,43 @@ import { TaskService } from '../services';
 class TaskStore {
   @observable taskList = [];
 
-  @observable hourValue = '00'        // 时间——小时
-  @observable minuteValue = '00'      // 时间——分钟
-  @observable secondValue = '00'      // 时间——秒
-  @observable weekList = []           // 时间——周
+  @observable hourValue = '00' // 时间——小时
 
-  @observable msgTypeValue = 'text'     // 消息类型
-  @observable mentionTypeValue = '0'    // 提醒类型
+  @observable minuteValue = '00' // 时间——分钟
 
-  @observable publishCron = ''            // 发布cron表达式
-  @observable publishCronText = ''        // 发布cron表达式解释
-  @observable publishIsWorkday = false    // 发布是否是工作日
+  @observable secondValue = '00' // 时间——秒
 
-  @observable publishModel = 0            // 发布模式 0: 即时消息 1:定时消息
-  @observable publishMentionValue = ''    // 发布提醒列表字段
+  @observable weekList = [] // 时间——周
 
-  @observable publishTextContent = ''     // 发布文本内容
+  @observable msgTypeValue = 'text' // 消息类型
+
+  @observable mentionTypeValue = '0' // 提醒类型
+
+  @observable publishCron = '' // 发布cron表达式
+
+  @observable publishCronText = '' // 发布cron表达式解释
+
+  @observable publishIsWorkday = false // 发布是否是工作日
+
+  @observable publishModel = 0 // 发布模式 0: 即时消息 1:定时消息
+
+  @observable publishMentionValue = '' // 发布提醒列表字段
+
+  @observable publishTextContent = '' // 发布文本内容
 
   @observable publishMarkdownContent = '' // 发布Markdown内容
 
-  @observable publishImageBase65 = ''     // 发布图片base64
-  @observable publishImageMd5 = ''        // 发布图片MD5
+  @observable publishImageBase65 = '' // 发布图片base64
 
-  @observable publishNewsTitle = ''       // 发布图文标题
+  @observable publishImageMd5 = '' // 发布图片MD5
+
+  @observable publishNewsTitle = '' // 发布图文标题
+
   @observable publishNewsDescription = '' // 发布图文描述
-  @observable publishNewsUrl = ''         // 发布图文点击后跳转的链接
-  @observable publishNewsPicurl = ''      // 发布图文图文消息的图片链接
+
+  @observable publishNewsUrl = '' // 发布图文点击后跳转的链接
+
+  @observable publishNewsPicurl = '' // 发布图文图文消息的图片链接
 
 
   // 获取任务列表
@@ -75,17 +86,17 @@ class TaskStore {
       const weekOption = [{ value: '7', label: '日' }, { value: '1', label: '一' }, { value: '2', label: '二' }, { value: '3', label: '三' }, { value: '4', label: '四' }, { value: '5', label: '五' }, { value: '6', label: '六' }];
 
       // 连续整数
-      if (this.weekList.length > 2 &&
-        this.weekList.length - 1 === this.weekList[this.weekList.length - 1] - this.weekList[0]) {
+      if (this.weekList.length > 2
+        && this.weekList.length - 1 === this.weekList[this.weekList.length - 1] - this.weekList[0]) {
         const weekJoin = [this.weekList[0], this.weekList[this.weekList.length - 1]];
         weekJoin.forEach((e) => {
-          const label = weekOption.find((i) => { return i.value === e; }).label;
+          const { label } = weekOption.find((i) => { return i.value === e; });
           week.push(`周${label}`);
           weekText = week.join('至');
         });
       } else {
         this.weekList.forEach((e) => {
-          const label = weekOption.find((i) => { return i.value === e; }).label;
+          const { label } = weekOption.find((i) => { return i.value === e; });
           week.push(`周${label}`);
         });
         weekText = week.join('、');
@@ -117,20 +128,20 @@ class TaskStore {
     this.secondValue = '00';
     this.weekList = [];
 
-    this.mentionTypeValue = '0'
-    this.publishCron = ''
-    this.publishCronText = ''
-    this.publishIsWorkday = false
+    this.mentionTypeValue = '0';
+    this.publishCron = '';
+    this.publishCronText = '';
+    this.publishIsWorkday = false;
 
-    this.publishMentionValue = ''
-    this.publishTextContent = ''
-    this.publishMarkdownContent = ''
-    this.publishImageBase65 = ''
-    this.publishImageMd5 = ''
-    this.publishNewsTitle = ''
-    this.publishNewsDescription = ''
-    this.publishNewsUrl = ''
-    this.publishNewsPicurl = ''
+    this.publishMentionValue = '';
+    this.publishTextContent = '';
+    this.publishMarkdownContent = '';
+    this.publishImageBase65 = '';
+    this.publishImageMd5 = '';
+    this.publishNewsTitle = '';
+    this.publishNewsDescription = '';
+    this.publishNewsUrl = '';
+    this.publishNewsPicurl = '';
 
     this.getCron();
   }
@@ -139,7 +150,7 @@ class TaskStore {
   @action resetAll = () => {
     this.resetPublish();
     this.publishModel = 0;
-    this.msgTypeValue = 'text'
+    this.msgTypeValue = 'text';
   }
 
   // 星期下拉变化
@@ -179,7 +190,7 @@ class TaskStore {
     // 更新工作日 则重置星期
     if (name === 'publishIsWorkday') {
       this.weekList = [];
-      this.getCron()
+      this.getCron();
     }
   }
 }

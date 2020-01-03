@@ -1,7 +1,9 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
 import { Link } from 'react-router-dom';
-import { Form, Icon, Input, Button, message } from 'antd';
+import {
+  Form, Icon, Input, Button, message,
+} from 'antd';
 import { UserService } from '../../services';
 import logo from '../../images/logo.png';
 
@@ -53,23 +55,29 @@ class Login extends React.Component {
           <Form onSubmit={this.handleSubmit}>
             <Form.Item>
               {getFieldDecorator('nickname', {
-                rules: [{ required: true, pattern: /[\u4e00-\u9fa5]/, message: '请输入中文姓名' }]
+                rules: [{ required: true, pattern: /[\u4e00-\u9fa5]/, message: '请输入中文姓名' }],
               })(
-                <Input prefix={<Icon type="smile" />} placeholder="中文姓名" size="large" maxLength={4} />)}
+                <Input prefix={<Icon type="smile" />} placeholder="中文姓名" size="large" maxLength={4} />,
+              )}
             </Form.Item>
             <Form.Item>
-              {getFieldDecorator('username', { rules: [{ required: true, message: '请输入用户名' }], })(
-                <Input prefix={<Icon type="user" />} placeholder="用户名" size="large" maxLength={16} />)}
+              {getFieldDecorator('username', { rules: [{ required: true, message: '请输入用户名' }] })(
+                <Input prefix={<Icon type="user" />} placeholder="用户名" size="large" maxLength={16} />,
+              )}
             </Form.Item>
             <Form.Item>
-              {getFieldDecorator('password', { rules: [{ required: true, message: '请输入密码' }], })(
-                <Input prefix={<Icon type="lock" />} type="password" placeholder="密码" size="large" maxLength={16} />)}
+              {getFieldDecorator('password', { rules: [{ required: true, message: '请输入密码' }] })(
+                <Input prefix={<Icon type="lock" />} type="password" placeholder="密码" size="large" maxLength={16} />,
+              )}
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit" className="w-100" loading={loading}>注册</Button>
               <div className="color-white-normal d-flex justify-content-between align-items-center">
-                <span className="occupied"></span>
-                <span className="f-12">已有账号？立即 <Link to="/login">登录</Link></span>
+                <span className="occupied" />
+                <span className="f-12">
+                  已有账号？立即
+                  <Link to="/login">登录</Link>
+                </span>
                 <a href="https://github.com/Elliottssu/insight" rel="noopener noreferrer" target="_blank" className="f-18 d-flex align-items-center"><Icon type="github" /></a>
               </div>
             </Form.Item>

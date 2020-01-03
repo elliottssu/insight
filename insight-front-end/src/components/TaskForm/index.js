@@ -4,15 +4,16 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { Select, Input, Button } from 'antd';
-import Tab from '../../components/Tab';
 import { TaskService } from '../../services';
 import MsgText from './MsgText';
 import MsgMarkdown from './MsgMarkdown';
 import MsgImage from './MsgImage';
 import MsgNews from './MsgNews';
 import Timing from './Timing';
+import Tab from '../Tab';
 
 import './index.less';
+
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -45,10 +46,10 @@ class TaskForm extends React.Component {
       publishTextContent,
       publishMarkdownContent,
       publishImageBase65, publishImageMd5,
-      publishNewsTitle, publishNewsDescription, publishNewsUrl, publishNewsPicurl
+      publishNewsTitle, publishNewsDescription, publishNewsUrl, publishNewsPicurl,
     } = this.props.TaskStore;
 
-    const publishMentionList = publishMentionValue.split(',')
+    const publishMentionList = publishMentionValue.split(',');
 
     // 校验手机号空
     if (mentionTypeValue === '2' && !publishMentionList.length) {
@@ -72,8 +73,8 @@ class TaskForm extends React.Component {
       mentionedMobileList = publishMentionList;
     }
 
-    let msgContentObj = {} // 消息体
-    let remark = '' // 备注
+    let msgContentObj = {}; // 消息体
+    let remark = ''; // 备注
 
     if (msgTypeValue === 'text') {
       // 内容为空
@@ -83,10 +84,9 @@ class TaskForm extends React.Component {
 
       msgContentObj = {
         content: publishTextContent,
-        mentioned_mobile_list: mentionedMobileList
-      }
-      remark = publishTextContent
-
+        mentioned_mobile_list: mentionedMobileList,
+      };
+      remark = publishTextContent;
     } else if (msgTypeValue === 'markdown') {
       // 内容为空
       if (!publishMarkdownContent) { this.props.CommonStore.alertMessage('error', '写点内容吧'); return; }
@@ -95,9 +95,8 @@ class TaskForm extends React.Component {
 
       msgContentObj = {
         content: publishMarkdownContent,
-      }
-      remark = publishMarkdownContent
-
+      };
+      remark = publishMarkdownContent;
     } else if (msgTypeValue === 'image') {
       // 内容为空
       if (!publishImageBase65 || !publishImageMd5) { this.props.CommonStore.alertMessage('error', '请填写图片内容'); return; }
@@ -105,9 +104,8 @@ class TaskForm extends React.Component {
       msgContentObj = {
         base64: publishImageBase65,
         md5: publishImageMd5,
-      }
-      remark = '图片类型'
-
+      };
+      remark = '图片类型';
     } else if (msgTypeValue === 'news') {
       // 内容为空
       if (!publishNewsTitle) { this.props.CommonStore.alertMessage('error', '写点标题吧'); return; }
@@ -119,12 +117,12 @@ class TaskForm extends React.Component {
             title: publishNewsTitle,
             description: publishNewsDescription,
             url: publishNewsUrl,
-            picurl: publishNewsPicurl
-          }
-        ]
-      }
+            picurl: publishNewsPicurl,
+          },
+        ],
+      };
 
-      remark = publishNewsTitle
+      remark = publishNewsTitle;
     }
 
 
@@ -132,7 +130,7 @@ class TaskForm extends React.Component {
       robotId: robotInfo.id,
       msgType: msgTypeValue,
       msgContent: JSON.stringify(msgContentObj),
-      remark
+      remark,
     };
 
     const paramsText = {
@@ -140,16 +138,16 @@ class TaskForm extends React.Component {
       msgType: 'text',
       msgContent: JSON.stringify({
         content: '记的关注喔',
-        mentioned_mobile_list: mentionedMobileList
+        mentioned_mobile_list: mentionedMobileList,
       }),
-      remark: '记的关注喔'
-    }
+      remark: '记的关注喔',
+    };
 
     // 即时消息
     const isRepeat = msgTypeValue !== 'text' && mentionTypeValue !== '0'; // @有内容并且非文本会重复发
     if (publishModel === 0) {
       this.createMessage(params, paramsText, isRepeat);
-      return
+      return;
     }
     // 定时消息（比即时消息多一个定时器）
     if (publishModel === 1) {
@@ -158,44 +156,44 @@ class TaskForm extends React.Component {
         cron: publishCron,
         cronText: publishCronText,
         isWorkday: publishIsWorkday,
-      }
-      this.createTask({ ...params, ...timing }, { ...paramsText, ...timing }, isRepeat)
+      };
+      this.createTask({ ...params, ...timing }, { ...paramsText, ...timing }, isRepeat);
     }
   }
 
   // 发送即时消息
   createMessage = (params, paramsText, isRepeat) => {
-    this.setState({ isSendLoading: true })
+    this.setState({ isSendLoading: true });
     TaskService.createMessage(params).then((result) => {
-      this.setState({ isSendLoading: false })
+      this.setState({ isSendLoading: false });
       if (result.data.code !== 0) { this.props.CommonStore.alertMessage('error', '发布失败，请检查机器人或填写内容是否正常'); return; }
       if (!isRepeat) {
         this.resetDate('消息发送成功啦');
-        return
+        return;
       }
       // 非文本消息，如果有@则再单独发一条@的
-      TaskService.createMessage(paramsText).then((result) => {
-        this.resetDate('消息发送成功啦')
-      })
+      TaskService.createMessage(paramsText).then(() => {
+        this.resetDate('消息发送成功啦');
+      });
     });
   }
 
 
   // 发送定时消息
   createTask = (params, paramsText, isRepeat) => {
-    this.setState({ isTaskLoading: true })
+    this.setState({ isTaskLoading: true });
     TaskService.createTask(params).then((result) => {
-      this.setState({ isTaskLoading: false })
+      this.setState({ isTaskLoading: false });
       if (result.data.code !== 0) { this.props.CommonStore.alertMessage('error', '发布失败，稍后再试'); return; }
 
       if (!isRepeat) {
         this.resetDate('定时成功啦');
-        return
+        return;
       }
       // 非文本消息，如果有@则再单独发一条@的
-      TaskService.createTask(paramsText).then((result) => {
-        this.resetDate('定时成功啦')
-      })
+      TaskService.createTask(paramsText).then(() => {
+        this.resetDate('定时成功啦');
+      });
     });
   }
 
@@ -208,11 +206,10 @@ class TaskForm extends React.Component {
     this.props.TaskStore.resetPublish();
   }
 
-
-
-
   render() {
-    const { publishModel, msgTypeValue, publishMentionValue, mentionTypeValue } = this.props.TaskStore;
+    const {
+      publishModel, msgTypeValue, publishMentionValue, mentionTypeValue,
+    } = this.props.TaskStore;
     const { message } = this.props.CommonStore;
     const { isSendLoading, isTaskLoading } = this.state;
 
@@ -230,9 +227,10 @@ class TaskForm extends React.Component {
             <Select
               defaultValue={mentionTypeValue}
               style={{ width: 100 }}
-              onChange={(e) => { return this.props.TaskStore.handleDropdownChange('mentionTypeValue', e) }}>
+              onChange={(e) => { return this.props.TaskStore.handleDropdownChange('mentionTypeValue', e); }}
+            >
               {
-                mentionTypeOption.map((item, index) => { return (<Option value={item.value} key={index}>{item.label}</Option>) })
+                mentionTypeOption.map((item, index) => { return (<Option value={item.value} key={index}>{item.label}</Option>); })
               }
             </Select>
 
@@ -243,7 +241,8 @@ class TaskForm extends React.Component {
                 maxLength={500}
                 className="mt-15"
                 onChange={(e) => { return this.props.TaskStore.handleTextChange('publishMentionValue', e); }}
-                autoSize={{ minRows: 2, maxRows: 5 }} />
+                autoSize={{ minRows: 2, maxRows: 5 }}
+              />
             ) : null}
 
             {/* 文本类型 */}
@@ -258,10 +257,9 @@ class TaskForm extends React.Component {
                 {message.status === 1 ? (<div>{message.type === 'success' ? (<span className="f-14 text-green">{message.content}</span>) : (<span className="f-14 text-red">{message.content}</span>)}</div>) : ''}
               </div>
               <div className="text-right">
-                {publishModel === 0 ?
-                  (<Button className="btn-main" loading={isSendLoading} onClick={() => { return this.handleSubmit(); }}>立即发送</Button>) :
-                  (<Button className="btn-main" loading={isTaskLoading} onClick={() => { return this.handleSubmit(); }}>定时发送</Button>)
-                }
+                {publishModel === 0
+                  ? (<Button className="btn-main" loading={isSendLoading} onClick={() => { return this.handleSubmit(); }}>立即发送</Button>)
+                  : (<Button className="btn-main" loading={isTaskLoading} onClick={() => { return this.handleSubmit(); }}>定时发送</Button>)}
               </div>
             </div>
           </div>

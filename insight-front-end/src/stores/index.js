@@ -8,4 +8,6 @@ import TaskStore from './TaskStore';
 import RobotStore from './RobotStore';
 import PermissionStore from './PermissionStore';
 
-export default { CommonStore, LogStore, TaskStore, RobotStore, PermissionStore };
+export default {
+  CommonStore, LogStore, TaskStore, RobotStore, PermissionStore,
+};

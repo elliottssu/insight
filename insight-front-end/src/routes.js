@@ -9,33 +9,32 @@ import Register from './containers/Register';
 import NotMatch from './containers/NotMatch';
 
 
-
 // 路由配置一级
 const routeMap = [
   {
     path: '/',
     component: Home,
-    exact: true
+    exact: true,
   },
   {
     path: '/home',
     component: Home,
-    exact: true
+    exact: true,
   },
   {
     path: '/login',
     component: Login,
-    exact: true
+    exact: true,
   },
   {
     path: '/register',
     component: Register,
-    exact: true
+    exact: true,
   },
   {
     path: undefined,
     component: NotMatch,
-    exact: false
+    exact: false,
   },
 ];
 

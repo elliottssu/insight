@@ -3,7 +3,9 @@
  */
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Form, Input, Button, message, Switch } from 'antd';
+import {
+  Form, Input, Button, message, Switch,
+} from 'antd';
 import { RobotService } from '../../services';
 
 import './index.less';
@@ -17,18 +19,17 @@ class RobotForm extends React.Component {
     super(props);
     this.state = {
       isConfirmLoading: false,
-      isSwitchCheck: false
+      isSwitchCheck: false,
     };
   }
 
   componentWillMount() {
-    const { robotInfo } = this.props
+    const { robotInfo } = this.props;
 
     if (robotInfo) {
-      this.setState({ isSwitchCheck: true })
+      this.setState({ isSwitchCheck: true });
     }
   }
-
 
 
   // 提交表单
@@ -40,15 +41,15 @@ class RobotForm extends React.Component {
           name: values.name.trim(),
           description: values.description.trim(),
           webhook: values.webhook.trim(),
-          status: values.status ? 'public' : 'private'
+          status: values.status ? 'public' : 'private',
         };
         this.setState({ isConfirmLoading: true });
 
 
-        const { robotInfo } = this.props
+        const { robotInfo } = this.props;
 
         if (robotInfo) { // 更新
-          params.id = robotInfo.id
+          params.id = robotInfo.id;
           RobotService.updataRobot(params).then((result) => {
             this.setState({ isConfirmLoading: false });
             if (result.data.code !== 0) {
@@ -59,7 +60,6 @@ class RobotForm extends React.Component {
             message.success('机器人更新成功');
             this.props.RobotStore.getRobotList();
           });
-
         } else { // 创建
           RobotService.createRobot(params).then((result) => {
             this.setState({ isConfirmLoading: false });
@@ -72,28 +72,21 @@ class RobotForm extends React.Component {
             this.props.RobotStore.getRobotList();
           });
         }
-
-
-
-
       }
     });
   };
 
   // 处理开关
   handleSwitchChange = (value) => {
-    this.setState({ isSwitchCheck: value })
+    this.setState({ isSwitchCheck: value });
   }
 
 
-
   render() {
-
     const { isConfirmLoading, isSwitchCheck } = this.state;
     const { getFieldDecorator } = this.props.form;
 
-    const { robotInfo } = this.props // 通过是否有信息传过来判断是新建还是编辑
-
+    const { robotInfo } = this.props; // 通过是否有信息传过来判断是新建还是编辑
 
 
     return (
@@ -124,32 +117,31 @@ class RobotForm extends React.Component {
         </Form.Item>
         <Form.Item>
           {getFieldDecorator('status', {
-            initialValue: robotInfo ? (robotInfo.status === 'public' ? true : false) : false,
+            initialValue: robotInfo ? (robotInfo.status === 'public') : false,
             valuePropName: 'checked',
-          })(<Switch checkedChildren="公共" unCheckedChildren="私有" onChange={this.handleSwitchChange} />)
-          }
+          })(<Switch checkedChildren="公共" unCheckedChildren="私有" onChange={this.handleSwitchChange} />)}
         </Form.Item>
         {
           robotInfo ? (
             <div className="color-white-normal">
               {
-                isSwitchCheck ?
-                  (<p className="f-12 mb-0">您选择了公共机器人，你可以查看和编辑，其他人只能查看但是不能编辑。</p>) :
-                  (<p className="f-12 mb-0">您选择了私人机器人，只有你可以查看和编辑，其他人不行。</p>)
+                isSwitchCheck
+                  ? (<p className="f-12 mb-0">您选择了公共机器人，你可以查看和编辑，其他人只能查看但是不能编辑。</p>)
+                  : (<p className="f-12 mb-0">您选择了私人机器人，只有你可以查看和编辑，其他人不行。</p>)
               }
-               <p className="f-12 mt-6">更新此处，不会影响之前的权限分配。</p>
+              <p className="f-12 mt-6">更新此处，不会影响之前的权限分配。</p>
             </div>
           ) : (
 
               <div className="color-white-normal">
                 {
-                  isSwitchCheck ?
-                    (<p className="f-12 mb-0">将为您创建一个公共机器人，你可以查看和编辑，其他人只能查看但是不能编辑。</p>) :
-                    (<p className="f-12 mb-0">将为您创建一个私人机器人，只有你可以查看和编辑，其他人不行。</p>)
+                  isSwitchCheck
+                    ? (<p className="f-12 mb-0">将为您创建一个公共机器人，你可以查看和编辑，其他人只能查看但是不能编辑。</p>)
+                    : (<p className="f-12 mb-0">将为您创建一个私人机器人，只有你可以查看和编辑，其他人不行。</p>)
                 }
                 <p className="f-12 mt-6">稍后您也可以重新分配权限。</p>
               </div>
-            )
+          )
         }
 
         <Form.Item wrapperCol={{ span: 24 }} className="text-right mb-0 mt-40">
@@ -161,4 +153,3 @@ class RobotForm extends React.Component {
   }
 }
 export default Form.create({ name: 'coordinated' })(RobotForm);
-

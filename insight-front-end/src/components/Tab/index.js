@@ -37,9 +37,10 @@ class Tab extends React.Component {
             defaultValue={msgTypeValue}
             className="select-small"
             style={{ width: 100 }}
-            onChange={(e) => { return this.props.TaskStore.handleDropdownChange('msgTypeValue', e) }}>
+            onChange={(e) => { return this.props.TaskStore.handleDropdownChange('msgTypeValue', e); }}
+          >
             {
-              msgTypeOption.map((item, index) => { return (<Option value={item.value} key={index}>{item.label}</Option>) })
+              msgTypeOption.map((item, index) => { return (<Option value={item.value} key={index}>{item.label}</Option>); })
             }
           </Select>
         </div>
@@ -48,4 +49,3 @@ class Tab extends React.Component {
   }
 }
 export default Tab;
-

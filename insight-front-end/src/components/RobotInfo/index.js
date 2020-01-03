@@ -24,7 +24,7 @@ class RobotInfo extends React.Component {
 
   // 机器人删除
   robotRemove = (robot) => {
-    const props = this.props;
+    const { props } = this;
     confirm({
       title: `你确定要删掉『${robot.name}』机器人吗？`,
       content: '此操作会删除掉和此机器人相关的所有任务、日志、权限等相关数据',
@@ -32,14 +32,11 @@ class RobotInfo extends React.Component {
       okType: 'danger',
       cancelText: '取消',
       onOk() {
-        const params = {
-          robotId: robot.id
-        };
-        RobotService.removeRobot(params).then((result) => {
+        RobotService.removeRobot({ robotId: robot.id }).then((result) => {
           if (result.data.code === 0) {
-            localStorage.removeItem('selectedRobotId')
+            localStorage.removeItem('selectedRobotId');
             props.RobotStore.getRobotList().then((robotInfo) => {
-              const params = { robotId: robotInfo.id }
+              const params = { robotId: robotInfo.id };
               props.TaskStore.getTaskList(params);
               props.LogStore.getLogList(params);
               props.TaskStore.getCron();
@@ -58,7 +55,9 @@ class RobotInfo extends React.Component {
   render() {
     const { taskList } = this.props.TaskStore;
     const { isModelPermissionVisable } = this.props.PermissionStore;
-    const { robotInfo, isLoadingRobot, isInitRobot, isModelEditVisable } = this.props.RobotStore;
+    const {
+      robotInfo, isLoadingRobot, isInitRobot, isModelEditVisable,
+    } = this.props.RobotStore;
 
 
     return (
@@ -85,7 +84,7 @@ class RobotInfo extends React.Component {
           ) : (<div>&nbsp;</div>)
         }
         <Modal
-          title={`『${robotInfo.name}』编辑机器人`} 
+          title={`『${robotInfo.name}』编辑机器人`}
           visible={isModelEditVisable}
           onCancel={this.props.RobotStore.handleCancel}
           footer={null}

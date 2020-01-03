@@ -1,7 +1,9 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
 import { Link } from 'react-router-dom';
-import { Form, Icon, Input, Button, message } from 'antd';
+import {
+  Form, Icon, Input, Button, message,
+} from 'antd';
 import { UserService } from '../../services';
 import logo from '../../images/logo.png';
 
@@ -24,7 +26,6 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-
         if (!values.username || !values.password) {
           message.error('用户名或密码不能为空');
           return;
@@ -59,19 +60,22 @@ class Login extends React.Component {
           <Form onSubmit={this.handleSubmit}>
             <Form.Item>
               {getFieldDecorator('username', { rules: [{ required: false, message: '请输入用户名' }] })(
-                <Input prefix={<Icon type="user" />} size="large" placeholder="用户名" />
+                <Input prefix={<Icon type="user" />} size="large" placeholder="用户名" />,
               )}
             </Form.Item>
             <Form.Item>
               {getFieldDecorator('password', { rules: [{ required: false, message: '请输入密码' }] })(
-                <Input prefix={<Icon type="lock" />} type="password" size="large" placeholder="密码" />
+                <Input prefix={<Icon type="lock" />} type="password" size="large" placeholder="密码" />,
               )}
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit" className="w-100" loading={loading}>登录</Button>
               <div className="color-white-normal d-flex justify-content-between align-items-center">
-                <span className="occupied"></span>
-                <span className="f-12">没有账号？立即 <Link to="/register">注册</Link></span>
+                <span className="occupied" />
+                <span className="f-12">
+                  没有账号？立即
+                  <Link to="/register">注册</Link>
+                </span>
                 <a href="https://github.com/Elliottssu/insight" rel="noopener noreferrer" target="_blank" className="f-18 d-flex align-items-center"><Icon type="github" /></a>
               </div>
             </Form.Item>

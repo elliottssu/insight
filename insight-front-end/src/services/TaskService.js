@@ -47,7 +47,7 @@ export default {
       });
     });
   },
-  
+
   // 任务删除
   removeTask(params) {
     return new Promise((resolve, reject) => {

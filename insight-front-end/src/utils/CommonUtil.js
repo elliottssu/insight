@@ -10,8 +10,8 @@ class CommonUtil {
    * 中文名字显示后两位
    * @param name 中文全称
    */
-  getShortName(name) {
-    return name.substring(name.length - 2)
+  getShortName = (name) => {
+    return name.substring(name.length - 2);
   }
 
   /**
@@ -19,7 +19,7 @@ class CommonUtil {
    * @param isLoading 是否加载中
    * @param taskCount 任务数量
    */
-  getRobotStatus(isLoading, taskCount) {
+  getRobotStatus = (isLoading, taskCount) => {
     let status = '';
     if (isLoading) {
       status = imgLoading;
@@ -27,10 +27,10 @@ class CommonUtil {
     }
     if (taskCount === 0) {
       status = imgOff;
-      return status
+      return status;
     }
     status = imgOn;
     return status;
-  };
+  }
 }
 export default new CommonUtil();

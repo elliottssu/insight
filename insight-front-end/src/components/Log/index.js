@@ -36,26 +36,31 @@ class Log extends React.Component {
         </div>
         <div className="card-content">
 
-          {logList.length ?
-            (<div>
+          {logList.length
+            ? (
+              <div>
 
-              {
-                logList.map((item, index) => {
-                  return (
-                    <Tooltip title={this.renderTitle(item.remark || '')} key={index}>
-                      <div className="content-item d-flex justify-content-around align-items-center">
-                        <div className="m-w-150">{dayjs(item.createdAt).format('YYYY年MM月DD日 HH:mm:ss')}</div>
-                        <div className="ml-5px m-w-50 text-nowrap">{item.methond === '0' ? '手动触发' : '自动触发'}：{item.remark || ''}</div>
-                        <div className="ml-auto">{item.status === '0' ? '执行失败' : '执行成功'}</div>
-                      </div>
-                    </Tooltip>
+                {
+                  logList.map((item, index) => {
+                    return (
+                      <Tooltip title={this.renderTitle(item.remark || '')} key={index}>
+                        <div className="content-item d-flex justify-content-around align-items-center">
+                          <div className="m-w-150">{dayjs(item.createdAt).format('YYYY年MM月DD日 HH:mm:ss')}</div>
+                          <div className="ml-5px m-w-50 text-nowrap">
+                            {item.methond === '0' ? '手动触发' : '自动触发'}
+                            ：
+                            {item.remark || ''}
+                          </div>
+                          <div className="ml-auto">{item.status === '0' ? '执行失败' : '执行成功'}</div>
+                        </div>
+                      </Tooltip>
 
-                  );
-                })
-              }
-            </div>
-            ) :
-            (<p className="text-center pt-40">暂无执行日志</p>)}
+                    );
+                  })
+                }
+              </div>
+            )
+            : (<p className="text-center pt-40">暂无执行日志</p>)}
         </div>
       </section>
 
@@ -63,4 +68,3 @@ class Log extends React.Component {
   }
 }
 export default Log;
-

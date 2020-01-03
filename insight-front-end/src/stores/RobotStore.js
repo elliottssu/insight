@@ -7,11 +7,17 @@ import { RobotService } from '../services';
 
 class RobotStore {
   @observable robotInfo = {};
+
   @observable robotList = [];
+
   @observable selectedRobotId = 0;
+
   @observable isLoadingRobot = true; // 是否在加载机器人
+
   @observable isInitRobot = false; // 是否初始化机器人完成
+
   @observable isModelCreateVisable = false;
+
   @observable isModelEditVisable = false;
 
   // 获取robot
@@ -41,16 +47,17 @@ class RobotStore {
 
   // 显示模态框
   @action showModelCreate = () => {
-    this.isModelCreateVisable = true
+    this.isModelCreateVisable = true;
   }
+
   @action showModelEdit = () => {
-    this.isModelEditVisable = true
+    this.isModelEditVisable = true;
   }
 
   // 隐藏模态框
   @action handleCancel = () => {
-    this.isModelCreateVisable = false
-    this.isModelEditVisable = false
+    this.isModelCreateVisable = false;
+    this.isModelEditVisable = false;
   };
 }
 

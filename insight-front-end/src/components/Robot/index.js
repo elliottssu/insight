@@ -17,7 +17,6 @@ class Robot extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isConfirmLoading: false
     };
   }
 
@@ -34,7 +33,7 @@ class Robot extends React.Component {
     this.props.RobotStore.isLoadingRobot = false;
     this.props.RobotStore.robotInfo = robotInfo;
     // 初始化数据
-    const params = { robotId: robotInfo.id }
+    const params = { robotId: robotInfo.id };
     this.props.TaskStore.resetAll();
     this.props.TaskStore.getTaskList(params);
     this.props.LogStore.getLogList(params);
@@ -42,17 +41,13 @@ class Robot extends React.Component {
   };
 
 
-
-
-
-
   render() {
     const {
-      robotList, selectedRobotId, isModelCreateVisable
+      robotList, selectedRobotId, isModelCreateVisable,
     } = this.props.RobotStore;
 
-    const robotListPublic = robotList.filter((e) => { return e.status === 'public'; })
-    const robotListPrivate = robotList.filter((e) => { return e.status === 'private'; })
+    const robotListPublic = robotList.filter((e) => { return e.status === 'public'; });
+    const robotListPrivate = robotList.filter((e) => { return e.status === 'private'; });
 
     const renderRobitList = (robotListCurrent, publishStatus) => {
       return (
@@ -61,7 +56,7 @@ class Robot extends React.Component {
             robotListCurrent.map((item, index) => {
               return (
                 <div className="robot-item" key={index}>
-                  <div className={selectedRobotId === item.id ? 'robot-header robot-active' : 'robot-header'} onClick={() => { return this.selectRobot(item.id); }} >
+                  <div className={selectedRobotId === item.id ? 'robot-header robot-active' : 'robot-header'} onClick={() => { return this.selectRobot(item.id); }}>
                     <div className="robot-avatar d-flex justify-content-center align-items-center">
                       <span className="color-white-deep"><img src={imgRobot} alt="robot" height="50" /></span>
                     </div>
@@ -74,23 +69,27 @@ class Robot extends React.Component {
           }
           {publishStatus ? (
             <div className="robot-item">
-              <div className="robot-header" onClick={() => { return this.props.RobotStore.showModelCreate(); }} >
+              <div className="robot-header" onClick={() => { return this.props.RobotStore.showModelCreate(); }}>
                 <div className="robot-avatar robot-empty d-flex justify-content-center align-items-center">
-                  <span className="color-white-deep" ><img src={imgAdd} alt="add" height="30" /></span>
+                  <span className="color-white-deep"><img src={imgAdd} alt="add" height="30" /></span>
                 </div>
               </div>
             </div>
           ) : null}
         </div>
-      )
-    }
+      );
+    };
 
     return (
       <div>
         <section className="mt-40 mt-sm-50">
           <div className="title-main f-18">
             <span>公共机器人</span>
-            <span className="color-white-light f-14 ml-8">（共{robotListPublic.length}个）</span>
+            <span className="color-white-light f-14 ml-8">
+              （共
+              {robotListPublic.length}
+              个）
+            </span>
           </div>
           <div className="mt-15">
             {renderRobitList(robotListPublic)}
@@ -99,7 +98,11 @@ class Robot extends React.Component {
         <section className="mt-40 mt-sm-50">
           <div className="title-main f-18  position-relative">
             <span>我的机器人</span>
-            <span className="color-white-light f-14 ml-8">（共{robotListPrivate.length}个）</span>
+            <span className="color-white-light f-14 ml-8">
+              （共
+              {robotListPrivate.length}
+              个）
+            </span>
 
           </div>
           <div className="mt-15">
@@ -124,4 +127,3 @@ class Robot extends React.Component {
   }
 }
 export default Robot;
-

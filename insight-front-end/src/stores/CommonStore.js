@@ -6,6 +6,7 @@ import { action, observable } from 'mobx';
 
 class CommonStore {
   @observable message = {}; // 消息提示
+
   @observable timer = null;
 
   /**
@@ -17,7 +18,7 @@ class CommonStore {
     this.message = {
       status: 1,
       type,
-      content
+      content,
     };
     if (this.timer) {
       clearTimeout(this.timer);

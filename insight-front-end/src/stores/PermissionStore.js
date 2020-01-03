@@ -7,6 +7,7 @@ import { PermissionService } from '../services';
 
 class PermissionStore {
   @observable isModelPermissionVisable = false;
+
   @observable permissionList = [];
 
   // 获取日志
@@ -19,12 +20,12 @@ class PermissionStore {
 
   // 显示权限模态框
   @action showModelPermission = () => {
-    this.isModelPermissionVisable = true
+    this.isModelPermissionVisable = true;
   }
 
   // 隐藏权限模态框
   @action handleCancel = () => {
-    this.isModelPermissionVisable = false
+    this.isModelPermissionVisable = false;
   }
 }
 

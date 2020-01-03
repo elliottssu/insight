@@ -4,8 +4,10 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import dayjs from 'dayjs';
-import { Tooltip, Modal, message } from 'antd';
-import { Icon, } from 'antd';
+import {
+  Tooltip, Modal, message, Icon,
+} from 'antd';
+
 import { TaskService } from '../../services';
 
 import './index.less';
@@ -24,7 +26,7 @@ class TaskList extends React.Component {
   taskUpdate = (item) => {
     const params = {
       taskId: item.id,
-      status: item.status === '0' ? '1' : '0'
+      status: item.status === '0' ? '1' : '0',
     };
     TaskService.updateTask(params).then((result) => {
       if (result.data.code === 0) {
@@ -36,7 +38,7 @@ class TaskList extends React.Component {
 
   // 任务删除
   taskRemove = (item) => {
-    const props = this.props;
+    const { props } = this;
     confirm({
       title: '你确定要删掉此任务吗？',
       content: '删除任务无法复原，但会保留历史执行记录',
@@ -45,7 +47,7 @@ class TaskList extends React.Component {
       cancelText: '取消',
       onOk() {
         const params = {
-          taskId: item.id
+          taskId: item.id,
         };
         TaskService.removeTask(params).then((result) => {
           if (result.data.code === 0) {
@@ -62,7 +64,7 @@ class TaskList extends React.Component {
 
   // 任务临时触发
   taskSend = (item) => {
-    const props = this.props;
+    const { props } = this;
 
     confirm({
       title: '你确定要手动触发一次此条消息吗？',
@@ -106,11 +108,15 @@ class TaskList extends React.Component {
       <section className="card-warp mt-20">
         <div className="card-title title-main">
           <span className="color-white-normal">定时任务列表</span>
-          <span className="color-white-light f-14 ml-8">（正在执行{taskList.length}个定时任务）</span>
+          <span className="color-white-light f-14 ml-8">
+          （正在执行
+          {taskList.length}
+          个定时任务）
+          </span>
         </div>
         <div className="card-content fixed-height">
-          {taskList.length ?
-            (
+          {taskList.length
+            ? (
               <div>
                 {
                   taskList.map((item, index) => {
@@ -129,22 +135,22 @@ class TaskList extends React.Component {
                             <div className="ml-auto">
                               <Icon type="shake" title="手动触发" onClick={() => { return this.taskSend(item); }} className="a-main f-14" />
                               <span />
-                              {item.status === '1' ?
-                                (<Icon type="pause-circle" title="暂停" onClick={() => { return this.taskUpdate(item); }} className="a-main f-14 ml-10" />) :
-                                (<Icon type="play-circle" title="开始" onClick={() => { return this.taskUpdate(item); }} className="a-main f-14 ml-10" />)}
+                              {item.status === '1'
+                                ? (<Icon type="pause-circle" title="暂停" onClick={() => { return this.taskUpdate(item); }} className="a-main f-14 ml-10" />)
+                                : (<Icon type="play-circle" title="开始" onClick={() => { return this.taskUpdate(item); }} className="a-main f-14 ml-10" />)}
                               <Icon type="delete" title="移除" onClick={() => { return this.taskRemove(item); }} className="a-main f-14 ml-10" />
                             </div>
                           ) : (
                               <div className="ml-auto">&nbsp;</div>
-                            )}
+                          )}
                         </div>
                       </Tooltip>
                     );
                   })
                 }
               </div>
-            ) :
-            (<p className="text-center pt-40">暂无定时任务</p>)}
+            )
+            : (<p className="text-center pt-40">暂无定时任务</p>)}
         </div>
       </section>
     );
