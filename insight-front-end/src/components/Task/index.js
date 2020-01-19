@@ -107,7 +107,7 @@ class TaskList extends React.Component {
     return (
       <section className="card-warp mt-20">
         <div className="card-title title-main">
-          <span className="color-white-normal">定时任务列表</span>
+          <span className="color-white-normal f-18">定时任务列表</span>
           <span className="color-white-light f-14 ml-8">
           （正在执行
           {taskList.length}
