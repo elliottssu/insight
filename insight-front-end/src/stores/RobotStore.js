@@ -29,6 +29,7 @@ class RobotStore {
         let selectedRobotId = localStorage.getItem('selectedRobotId');
         if (!selectedRobotId) {
           selectedRobotId = robotList.length ? robotList[0].id : 0;
+          localStorage.setItem('selectedRobotId', String(selectedRobotId));
         }
 
         selectedRobotId = Number(selectedRobotId);
