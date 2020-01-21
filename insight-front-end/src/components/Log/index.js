@@ -45,7 +45,7 @@ class Log extends React.Component {
                     return (
                       <Tooltip title={this.renderTitle(item.remark || '')} key={index}>
                         <div className="content-item d-flex justify-content-around align-items-center">
-                          <div className="m-w-150">{dayjs(item.createdAt).format('YYYY年MM月DD日 HH:mm:ss')}</div>
+                          <div className="m-w-150">{dayjs(item.createDate).format('YYYY年MM月DD日 HH:mm:ss')}</div>
                           <div className="ml-5px m-w-50 text-nowrap">
                             {item.methond === '0' ? '手动触发' : '自动触发'}
                             ：

@@ -128,7 +128,7 @@ class TaskList extends React.Component {
                         <div className="content-item d-flex justify-content-around align-items-center">
                           {item.status === '1' ? (<div className="tag tag-success tag-active">Runing</div>) : (<div className="tag tag-default">Stop</div>)}
                           <div className="ml-15 f-14 m-w-50 text-nowrap">
-                            {item.cronText.replace(/今天/, dayjs(item.createdAt).format('YYYY年MM月DD日'))}
+                            {item.cronText.replace(/今天/, dayjs(item.createDate).format('YYYY年MM月DD日'))}
                           </div>
                           {/* 只有管理员才可以编辑 */}
                           {robotInfo.role === 'admin' ? (
