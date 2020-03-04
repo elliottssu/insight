@@ -22,7 +22,13 @@ export default class RobotController extends Controller {
     const { robotId, msgType, msgContent, remark, suite } = ctx.request.body;
     if (Util.emptyVaild(robotId, msgType, msgContent)) return ctx.body = Msg.error('数据不能为空');
 
-    const sendStatus = await ctx.service.cron.sendWechart(robotId, msgType, msgContent, suite, '0', Util.getUserId(ctx), -1, remark);
+    let sendStatus;
+    try {
+      sendStatus = await ctx.service.cron.sendWechart(robotId, msgType, msgContent, suite, '0', Util.getUserId(ctx), -1, remark);
+    } catch (error) {
+      return ctx.body = Msg.error('消息发送成功但是写入数据库失败，可能是内容太长了');
+    }
+
     if (!sendStatus) return ctx.body = Msg.error('API调用异常');
 
     ctx.body = Msg.success();

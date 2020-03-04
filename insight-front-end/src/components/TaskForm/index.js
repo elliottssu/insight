@@ -166,7 +166,7 @@ class TaskForm extends React.Component {
     this.setState({ isSendLoading: true });
     TaskService.createMessage(params).then((result) => {
       this.setState({ isSendLoading: false });
-      if (result.data.code !== 0) { this.props.CommonStore.alertMessage('error', '发布失败，请检查机器人或填写内容是否正常'); return; }
+      if (result.data.code !== 0) { this.props.CommonStore.alertMessage('error', '发布失败，请检查机器人是否正常或填写内容是否过长或不规范'); return; }
       if (!isRepeat) {
         this.resetDate('消息发送成功啦');
         return;
@@ -184,7 +184,7 @@ class TaskForm extends React.Component {
     this.setState({ isTaskLoading: true });
     TaskService.createTask(params).then((result) => {
       this.setState({ isTaskLoading: false });
-      if (result.data.code !== 0) { this.props.CommonStore.alertMessage('error', '发布失败，稍后再试'); return; }
+      if (result.data.code !== 0) { this.props.CommonStore.alertMessage('error', '发布失败，请检查机器人是否正常或填写内容是否过长或不规范'); return; }
 
       if (!isRepeat) {
         this.resetDate('定时成功啦');

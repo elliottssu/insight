@@ -27,7 +27,7 @@ export default class Log {
     msgType: string;
 
     // 发给企业微信的消息体
-    @Column({ length: 20000 })
+    @Column()
     msgContent: string;
 
     // 内容

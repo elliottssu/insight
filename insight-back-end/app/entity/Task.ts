@@ -19,7 +19,7 @@ export default class Task {
     msgType: string;
 
     // 消息体
-    @Column({ length: 20000 })
+    @Column()
     msgContent: string;
 
     // cron表达式
