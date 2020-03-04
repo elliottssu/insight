@@ -128,7 +128,7 @@ class TaskStore {
     this.secondValue = '00';
     this.weekList = [];
 
-    this.mentionTypeValue = '0';
+    // this.mentionTypeValue = '0'; // 发布成功后保留状态
     this.publishCron = '';
     this.publishCronText = '';
     this.publishIsWorkday = false;
