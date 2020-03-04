@@ -19,7 +19,7 @@ export default class Task {
     msgType: string;
 
     // 消息体
-    @Column()
+    @Column({ type: 'text' })
     msgContent: string;
 
     // cron表达式
@@ -43,7 +43,7 @@ export default class Task {
     isWorkday: boolean;
 
     // 备注
-    @Column()
+    @Column({ type: 'text' })
     remark: string;
 
     // 创建时间

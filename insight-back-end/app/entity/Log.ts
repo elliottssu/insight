@@ -27,11 +27,11 @@ export default class Log {
     msgType: string;
 
     // 发给企业微信的消息体
-    @Column()
+    @Column({ type: 'text' })
     msgContent: string;
 
     // 内容
-    @Column()
+    @Column({ type: 'text' })
     remark: string;
 
     // 执行状态
