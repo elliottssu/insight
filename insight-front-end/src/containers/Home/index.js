@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { hot } from 'react-hot-loader';
-import { Menu, Dropdown, Icon } from 'antd';
+import { Menu, Dropdown, Icon, Alert } from 'antd';
 import { Link } from 'react-router-dom';
 
 import {
@@ -37,6 +37,11 @@ class Home extends React.Component {
     UserService.loginOut();
   }
 
+  // 关闭提示
+  onClose = () => {
+    localStorage.setItem('insight_alert_close', 'true')
+  }
+
   render() {
     const { robotInfo, isInitRobot } = this.props.RobotStore;
     const name = localStorage.getItem('name') || '';
@@ -67,6 +72,17 @@ class Home extends React.Component {
 
     return (
       <div className="container">
+        {
+          !localStorage.getItem('insight_alert_close') ? <Alert
+            message="本系统仅为测试使用，为了您的机器人安全，请部署到自己的内网（当然如果您不想部署，也可以继续使用本网站，但有任何机器人不可控的问题，我们不负责任喔）。同时为了保护本系统机器人安全性，我们禁用了公共机器人的使用。"
+            type="warning"
+            closable
+            onClose={this.onClose}
+            // banner
+            showIcon
+          /> : null
+        }
+
         <div className="m-h-70  d-flex justify-content-between align-items-center">
           <span className="occupied" />
           <img src={ImgLogo} height="40" alt="logo" />

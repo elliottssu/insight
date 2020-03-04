@@ -44,7 +44,7 @@ export default class RobotController extends Controller {
       name,
       description,
       webhook,
-      status,
+      status: 'private', // 测试网，永远为私有机器人
     };
 
     // 写入机器人
@@ -80,7 +80,7 @@ export default class RobotController extends Controller {
       name,
       description,
       webhook,
-      status,
+      status: 'private', // 测试网，永远为私有机器人
     };
 
     await ctx.repo.Robot.update({ id }, params);

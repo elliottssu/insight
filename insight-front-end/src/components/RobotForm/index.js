@@ -119,7 +119,7 @@ class RobotForm extends React.Component {
           {getFieldDecorator('status', {
             initialValue: robotInfo ? (robotInfo.status === 'public') : false,
             valuePropName: 'checked',
-          })(<Switch checkedChildren="公共" unCheckedChildren="私有" onChange={this.handleSwitchChange} />)}
+          })(<Switch checkedChildren="公共" unCheckedChildren="私有" onChange={this.handleSwitchChange} disabled />)}
         </Form.Item>
         {
           robotInfo ? (
@@ -141,8 +141,11 @@ class RobotForm extends React.Component {
                 }
                 <p className="f-12 mt-6">稍后您也可以重新分配权限。</p>
               </div>
-          )
+            )
         }
+
+
+        <p className="f-14 mt-6" style={{ color: '#eb7272' }}>当前为测试网址，为了保证您的机器人安全，您无法使用公共机器人</p>
 
         <Form.Item wrapperCol={{ span: 24 }} className="text-right mb-0 mt-40">
           <Button onClick={this.props.RobotStore.handleCancel}>取消</Button>
