@@ -106,7 +106,7 @@ export default class Workday {
         const isHoliday = holidays_list.includes(formatedDay); // 是否是假期
         const isRepairWorkday = repair_workday_list.includes(formatedDay); // 是否是补班
         const isExist = HOLIDAYS[year] && REPAIR_WORKDAY[year]; // 是否存在今年的配置
-        const isWeekday = weekday === 6 || weekday === 7; // 是否是周末
+        const isWeekday = weekday === 6 || weekday === 0; // 是否是周末 周六：6  周日：0
         let isWorkday = true; // 是否是工作日
 
         if (!isExist) {
