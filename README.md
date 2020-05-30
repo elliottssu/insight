@@ -15,6 +15,11 @@
 [![License](https://img.shields.io/github/license/Elliottssu/insight)](https://github.com/Elliottssu/insight/blob/master/LICENSE)
 
 ![insight 预览](https://upload-images.jianshu.io/upload_images/3502567-6c6527d1709f03d8.png)
+
+## 更新日志（2020.05.31）
+1. 修复设置为智能跳过工作日时，周日依然提醒问题。
+2. 前端修复定时成功后，时间下拉状态不更新问题。
+
 ## 快速启动
 
 ```shell
@@ -35,6 +40,11 @@ npm run dev
 
 前后端使用的是React+Nodejs，数据库默认为Mysql测试库，您可以进入`insight-back-end/config`文件夹下，修改为自己的Mysql配置。
 
+## 在线Demo
+
+欢迎访问[insight在线体验官网](http://insight.charmculture.com) ，您可以注册一个账号体验。
+
+注意此网站为demo测试版本，不保障机器人安全性，如有需求可自行部署。
 
 ## Insight是什么？
 
@@ -52,12 +62,6 @@ Insight是一个**可以管理企业微信群机器人的小工具，在这里�
 6. 支持移动端布局，支持集成到企业微信控制台。
 
 您可以继续阅读详细的[使用文档](https://github.com/Elliottssu/insight/wiki/%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3)，解锁更多功能。
-
-## Demo预览
-
-欢迎访问[insight在线体验官网](http://insight.charmculture.com) ，您可以注册一个账号体验。
-
-注意此为demo测试版本，数据随时可能清空，请勿在此处放置自己正式的机器人链接。
 
 ## 技术栈
 
