@@ -50,7 +50,7 @@ class Timing extends React.Component {
         <div className="form-area mb-15 ">
           <div className="d-flex justify-content-center align-items-center">
             <Select
-              defaultValue={hourValue}
+              value={hourValue}
               style={{ width: 60 }}
               suffixIcon={(<i />)}
               className="select-simple"
@@ -63,7 +63,7 @@ class Timing extends React.Component {
             </Select>
             <span className="ml-6 mr-6 f-weight-bold">:</span>
             <Select
-              defaultValue={minuteValue}
+              value={minuteValue}
               style={{ width: 60 }}
               suffixIcon={(<i />)}
               className="select-simple"
@@ -77,7 +77,7 @@ class Timing extends React.Component {
             <span className="ml-6 mr-6 f-weight-bold">:</span>
             <Select
               disabled
-              defaultValue={secondValue}
+              value={secondValue}
               style={{ width: 60 }}
               suffixIcon={(<i />)}
               className="select-simple"
