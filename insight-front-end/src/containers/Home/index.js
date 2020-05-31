@@ -39,7 +39,7 @@ class Home extends React.Component {
 
   // 关闭提示
   onClose = () => {
-    localStorage.setItem('insight_alert_close', 'true')
+    localStorage.setItem('insight_alert_close_1', 'true')
   }
 
   render() {
@@ -73,8 +73,8 @@ class Home extends React.Component {
     return (
       <div className="container">
         {
-          !localStorage.getItem('insight_alert_close') ? <Alert
-            message="本系统仅为测试使用，为了您的机器人安全，请部署到自己的内网（当然如果您不想部署，也可以继续使用本网站，但有任何机器人不可控的问题，我们不负责任喔）。同时为了保护本系统机器人安全性，我们禁用了公共机器人的使用。"
+          !localStorage.getItem('insight_alert_close_1') ? <Alert
+            message="本网站为企业微信机器人测试使用，不负责机器人安全问题，如果可能请部署到自己服务器。(现在已完美支持跳过节假日功能了哟～)"
             type="warning"
             closable
             onClose={this.onClose}
