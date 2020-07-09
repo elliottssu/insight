@@ -16,6 +16,9 @@
 
 ![insight 预览](https://upload-images.jianshu.io/upload_images/3502567-6c6527d1709f03d8.png)
 
+## 部署教程
+这个是在nginx上部署此工程的使用参考教程：[从0到1，Nginx部署Nodejs+React教程](https://www.jianshu.com/p/5af19b772948)
+
 ## 更新日志（2020.05.31）
 1. 修复设置为智能跳过工作日时，周日依然提醒问题。
 2. 前端修复定时成功后，时间下拉状态不更新问题。
