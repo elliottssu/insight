@@ -3,7 +3,7 @@
   "version": "1.3.0",
   "description": "Insight是一个可以管理企业微信群机器人的小工具，可以非常方便的往群里发布即时消息和定时消息。",
   "dependencies": {
-    "standard-version": "^7.0.0"
+    "standard-version": "^8.0.1"
   },
   "devDependencies": {},
   "scripts": {
