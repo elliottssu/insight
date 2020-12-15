@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Select, Switch } from 'antd';
+import { Select, Switch, Input, Icon, Tooltip } from 'antd';
 
 const { Option } = Select;
 
@@ -42,7 +42,7 @@ class Timing extends React.Component {
 
 
     const {
-      hourValue, minuteValue, secondValue, weekList, publishCronText, publishIsWorkday,
+      hourValue, minuteValue, secondValue, weekList, publishCronText, publishIsWorkday, publishIsCustomizeCron, publishCustomizeCron,
     } = this.props.TaskStore;
 
     return (
@@ -88,7 +88,6 @@ class Timing extends React.Component {
                 secondOption.map((item, index) => { return (<Option value={item.value} key={index}>{item.label}</Option>); })
               }
             </Select>
-
           </div>
           <div className="d-flex justify-content-center align-items-center mt-20">
             {weekOption.map((item, index) => {
@@ -99,6 +98,14 @@ class Timing extends React.Component {
           <div className="d-flex justify-content-center align-items-center mt-20">
             <Switch size="small" checked={publishIsWorkday} onChange={(e) => { return this.props.TaskStore.handleSwitchChange('publishIsWorkday', e); }} />
             <span className="ml-8">工作日（智能跳过节假日）</span>
+          </div>
+          <div className="d-flex justify-content-center align-items-center mt-20">
+            <Switch size="small" checked={publishIsCustomizeCron} onChange={(e) => { return this.props.TaskStore.handleSwitchChange('publishIsCustomizeCron', e); }} />
+            <span className="ml-8">自定义cron表达式</span>
+            <a href="https://github.com/node-schedule/node-schedule" target="_blank">
+              <Tooltip><Icon type="question-circle" theme="twoTone" twoToneColor="#ff9900" title="点击查看cron表达式说明"/></Tooltip>
+            </a>
+            <span className="ml-8"><Input placeholder="输入自定义cron表达式" value={publishCustomizeCron} onChange={(e) => { return this.props.TaskStore.handleTextChange('publishCustomizeCron', e); }}></Input></span>
           </div>
           <div className="text-center f-20 mt-20">{publishCronText}</div>
         </div>
