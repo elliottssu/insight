@@ -19,9 +19,9 @@
 
 ## 在线体验
 
-欢迎访问[insight官网](http://insight.charmculture.com) ，您可以注册一个账号体验设置机器人。
+insight官网：[http://insight.charmculture.com](http://insight.charmculture.com)。
 
-注意：此网站仅供demo测试，你也可以暂时将自己的机器人放在这里，但是以后该网站有可能会关闭。
+注意：此网站仅供demo测试，你也可以暂时将自己的机器人放在这里。
 
 ## 部署教程
 这个是在nginx上部署此工程的使用参考教程：[从0到1，Nginx部署Nodejs+React教程](https://www.jianshu.com/p/5af19b772948)
