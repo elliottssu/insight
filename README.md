@@ -16,12 +16,18 @@
 
 ![insight 预览](https://upload-images.jianshu.io/upload_images/3502567-6c6527d1709f03d8.png)
 
+
+## 在线体验
+
+insight官网：[http://insight.charmculture.com](http://insight.charmculture.com)。
+
+注意：此网站仅供demo测试，你也可以暂时将自己的机器人放在这里。
+
 ## 部署教程
 这个是在nginx上部署此工程的使用参考教程：[从0到1，Nginx部署Nodejs+React教程](https://www.jianshu.com/p/5af19b772948)
 
-## 更新日志（2020.05.31）
-1. 修复设置为智能跳过工作日时，周日依然提醒问题。
-2. 前端修复定时成功后，时间下拉状态不更新问题。
+## 更新日志（2021.12.23）
+1. 后台添加[2021年节假日](http://www.gov.cn/zhengce/content/2020-11/25/content_5564127.htm)
 
 ## 快速启动
 
@@ -42,12 +48,6 @@ npm run dev
 访问http://localhost:3000 即可启动。
 
 前后端使用的是React+Nodejs，数据库默认为Mysql测试库，您可以进入`insight-back-end/config`文件夹下，修改为自己的Mysql配置。
-
-## 在线Demo
-
-欢迎访问[insight在线体验官网](http://insight.charmculture.com) ，您可以注册一个账号体验。
-
-注意此网站为demo测试版本，不保障机器人安全性，如有需求可自行部署。
 
 ## Insight是什么？
 
