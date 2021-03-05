@@ -27,7 +27,7 @@ insight官网：[http://insight.charmculture.com](http://insight.charmculture.co
 这个是在nginx上部署此工程的使用参考教程：[从0到1，Nginx部署Nodejs+React教程](https://www.jianshu.com/p/5af19b772948)
 
 ## 更新日志
-1. `2021.03.05` 支持自定义Cron表达式，感谢[hrpinfzu:hrp]的代码贡献(https://github.com/elliottssu/insight/pull/12)
+1. `2021.03.05` 支持自定义Cron表达式，感谢[hrpinfzu:hrp](https://github.com/elliottssu/insight/pull/12)的代码贡献
 1. `2020.12.23` 后台添加[2021年节假日](http://www.gov.cn/zhengce/content/2020-11/25/content_5564127.htm)
 
 ## 快速启动
