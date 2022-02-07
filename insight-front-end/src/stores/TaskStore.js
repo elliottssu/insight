@@ -27,6 +27,10 @@ class TaskStore {
 
   @observable publishIsWorkday = false // 发布是否是工作日
 
+  @observable publishIsCustomizeCron = false // 发布是否自定义cron表达式
+
+  @observable publishCustomizeCron = '' // 发布自定义cron表达式
+
   @observable publishModel = 0 // 发布模式 0: 即时消息 1:定时消息
 
   @observable publishMentionValue = '' // 发布提醒列表字段
@@ -111,6 +115,11 @@ class TaskStore {
       publishCronText = `每个工作日 ${time} 执行`;
     }
 
+    // 开启自定义cron表达式模式（前端输入自定义cron表达式）
+    if (this.publishIsCustomizeCron) {
+      publishCron = this.publishCustomizeCron;
+      publishCronText = `按自定义cron表达式${publishCron}执行`;
+    }
 
     this.publishCron = publishCron;
     this.publishCronText = publishCronText;
@@ -132,6 +141,8 @@ class TaskStore {
     this.publishCron = '';
     this.publishCronText = '';
     this.publishIsWorkday = false;
+    this.publishIsCustomizeCron = false;
+    this.publishCustomizeCron = '';
 
     this.publishMentionValue = '';
     this.publishTextContent = '';
@@ -172,6 +183,11 @@ class TaskStore {
   @action handleTextChange = (name, e) => {
     const content = (e.target.value).trim();
     this[name] = content;
+
+    if (name === 'publishCustomizeCron') {
+      this[name] = e.target.value;
+      this.getCron();
+    }
   }
 
   // 处理通用下拉类数据变化
@@ -190,8 +206,8 @@ class TaskStore {
     // 更新工作日 则重置星期
     if (name === 'publishIsWorkday') {
       this.weekList = [];
-      this.getCron();
     }
+    this.getCron();
   }
 }
 
