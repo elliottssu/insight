@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "dotenv -e ./env/.env.development react-app-rewired start",
-    "build": "dotenv -e ./env/.env.production react-app-rewired build",
+    "build": "npm install && dotenv -e ./env/.env.production react-app-rewired build",
     "test": "dotenv -e ./env/.env.development react-app-rewired test",
     "eject": "dotenv -e ./env/.env.development react-app-rewired eject"
   },
