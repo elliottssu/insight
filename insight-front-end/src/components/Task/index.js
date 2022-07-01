@@ -65,10 +65,9 @@ class TaskList extends React.Component {
   // 任务临时触发
   taskSend = (item) => {
     const { props } = this;
-
     confirm({
       title: '你确定要手动触发一次此条消息吗？',
-      content: `将发送一条内容：${item.remark || ''}`,
+      content: `${item.TextApiValue?'将发送一条API请求消息':'将发送一条内容：'+item.remark || ''}`,
       okText: '确定',
       cancelText: '取消',
       onOk() {
@@ -78,6 +77,7 @@ class TaskList extends React.Component {
           msgContent: item.msgContent,
           suite: item.suite,
           remark: item.remark,
+          TextApiValue: item.TextApiValue||'',
         };
 
         TaskService.createMessage(params).then((result) => {

@@ -99,10 +99,6 @@ class Home extends React.Component {
             <Log />
           </div>
         </div>
-        <div className="footer mt-20 f-12 color-white-light d-flex justify-content-center align-items-center p-10">
-          <span>©2020 Insight, producted in&nbsp;</span>
-          <a href="https://github.com/Elliottssu/insight" rel="noopener noreferrer" target="_blank" className="a-gray">github</a>
-        </div>
       </div>
     );
   }

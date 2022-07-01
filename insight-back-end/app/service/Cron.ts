@@ -31,6 +31,37 @@ export default class Cron extends Service {
 
             // 获取机器人ID
             const taskInfo: any = await ctx.repo.Task.findOne({ id });
+            //判断是否有外部API
+            if (taskInfo.TextApiValue) {
+                var result = await  ctx.curl(taskInfo.TextApiValue,{
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Access-Control-Allow-Origin': '*',
+                    },
+                  });
+                  if(result.status == 200||202||201){
+                    //
+                    //msgContent处理成json
+                    taskInfo.msgContent = JSON.parse(taskInfo.msgContent);
+                    let data = eval('('+ result.data +')').data;
+                    //将data这个json展开成字符串 递归深度无穷
+                    let str = '';
+                    function deep(data){
+                    for(let i in data){
+                        if(typeof data[i] == 'object'){
+                        deep(data[i]);
+                        }else{
+                        str += i + ':' + data[i] + '\n';
+                        }
+                    }
+                    }
+                    deep(data);
+                    taskInfo.msgContent.content = str;
+                    taskInfo.msgContent = JSON.stringify(taskInfo.msgContent);
+                  }else{
+                    return ctx.logger.info(`任务ID：${id}，任务执行失败 API出错！`);
+                  }
+            }
             // 发送企业微信内容
             const sendStatus = await ctx.service.cron.sendWechart(taskInfo.robotId, taskInfo.msgType, taskInfo.msgContent, taskInfo.suite, '1', taskInfo.userId, taskInfo.id, taskInfo.remark);
             if (sendStatus) {
@@ -79,13 +110,16 @@ export default class Cron extends Service {
     public async sendWechart(robotId: string, msgType: string, msgContent: string, suite: string = '', methond: string, userId: string, taskId: number, remark: string) {
         const { ctx } = this;
         let text: any = JSON.parse(msgContent);
-
+        console.log(text);
         // 根据套件内容 定制化文本内容
         if (suite === 'suiteA') {
             text = await ctx.service.suite.suiteA(JSON.parse(msgContent));
         }
+        if (suite === 'suiteB') {
+            text = await ctx.service.suite.suiteA(JSON.parse(msgContent));
+        }
 
-        // 查找企业微信机器人地址
+        // 查找企业微信机器人地址 
         const filter: any = { id: robotId };
         const robotInfo = await ctx.repo.Robot.findOne(filter);
         if (!robotInfo) return false;

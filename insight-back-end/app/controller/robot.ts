@@ -33,7 +33,7 @@ export default class RobotController extends Controller {
 
     if (Util.emptyVaild(name, description, webhook, status)) return ctx.body = Msg.error('数据不能为空');
 
-    if (name.length > 6) return ctx.body = Msg.error('名字太长，最多6个字符');
+    // if (name.length > 6) return ctx.body = Msg.error('名字太长，最多6个字符');
     const infoName = await ctx.repo.Robot.findOne({ name });
     if (infoName) return ctx.body = Msg.error('机器人名已存在，换一个吧');
     const infoHook = await ctx.repo.Robot.findOne({ webhook });

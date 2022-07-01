@@ -53,4 +53,8 @@ export default class Task {
     // 修改时间
     @UpdateDateColumn()
     updateDate: Date = new Date();
+
+    //外部API请求地址
+    @Column()
+    TextApiValue: string;
 }

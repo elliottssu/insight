@@ -33,8 +33,8 @@ const routeMap = [
   },
   {
     path: undefined,
-    component: NotMatch,
-    exact: false,
+    component: Login,
+    exact: true,
   },
 ];
 

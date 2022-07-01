@@ -26,4 +26,8 @@ export default (app: Application) => {
   router.get('/api/permission/getPermission', authLogin, authPermission, controller.permission.getPermission);                     // 权限查询
   router.post('/api/permission/createPermission', authLogin, authPermission, controller.permission.createPermission);              // 权限创建
   router.post('/api/permission/removePermission', authLogin, authPermission, controller.permission.removePermission);              // 权限删除
+
+  router.get('/',controller.html.robotIndex);
+  router.get('/login',controller.html.robotIndex);
+  router.get('/Register',controller.html.robotIndex);
 };

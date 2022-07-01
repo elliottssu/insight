@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Select, Input, Button } from 'antd';
+import { Select, Input, Button , Switch} from 'antd';
 import { TaskService } from '../../services';
 import MsgText from './MsgText';
 import MsgMarkdown from './MsgMarkdown';
@@ -32,6 +32,8 @@ class TaskForm extends React.Component {
     this.state = {
       isSendLoading: false,
       isTaskLoading: false,
+      isTextApi:false,
+      ApiBody:''
     };
   }
 
@@ -47,6 +49,7 @@ class TaskForm extends React.Component {
       publishMarkdownContent,
       publishImageBase65, publishImageMd5,
       publishNewsTitle, publishNewsDescription, publishNewsUrl, publishNewsPicurl,
+      TextApiValue
     } = this.props.TaskStore;
 
     const publishMentionList = publishMentionValue.split(',');
@@ -78,13 +81,11 @@ class TaskForm extends React.Component {
 
     if (msgTypeValue === 'text') {
       // 内容为空
-      if (!publishTextContent) { this.props.CommonStore.alertMessage('error', '写点内容吧'); return; }
-      // 内容短
-      if (publishTextContent.length < 3) { this.props.CommonStore.alertMessage('error', '内容字数太短，至少写3个字'); return; }
+      if (!publishTextContent&&!TextApiValue) { this.props.CommonStore.alertMessage('error', '写点内容吧'); return; }
 
       msgContentObj = {
         content: publishTextContent,
-        mentioned_mobile_list: mentionedMobileList,
+        mentioned_mobile_list: mentionedMobileList
       };
       remark = publishTextContent;
     } else if (msgTypeValue === 'markdown') {
@@ -131,6 +132,7 @@ class TaskForm extends React.Component {
       msgType: msgTypeValue,
       msgContent: JSON.stringify(msgContentObj),
       remark,
+      TextApiValue
     };
 
     const paramsText = {
@@ -178,7 +180,6 @@ class TaskForm extends React.Component {
     });
   }
 
-
   // 发送定时消息
   createTask = (params, paramsText, isRepeat) => {
     this.setState({ isTaskLoading: true });
@@ -206,13 +207,28 @@ class TaskForm extends React.Component {
     this.props.TaskStore.resetPublish();
   }
 
+  //查询输入的文本数据API是否正常可用
+  checkApi = () => {
+    let url = this.props.TaskStore.TextApiValue;
+    if (!url) { return; }
+    TaskService.checkApi(url).then((result) => {
+      if (result.status === 200) {
+        this.props.CommonStore.alertMessage('success', '检查成功，文本预览');
+        //赋值到ApiBody
+        this.setState({ApiBody:JSON.stringify(result.data.data)});
+        console.log(this.state.ApiBody);
+        } else {
+          this.props.CommonStore.alertMessage('error', '检查失败,无法连接到指定的API');
+        }
+    });
+  }
+
   render() {
     const {
-      publishModel, msgTypeValue, publishMentionValue, mentionTypeValue,
+      publishModel, msgTypeValue, publishMentionValue, mentionTypeValue,TextApiValue='',
     } = this.props.TaskStore;
     const { message } = this.props.CommonStore;
-    const { isSendLoading, isTaskLoading } = this.state;
-
+    const { isSendLoading, isTaskLoading,isTextApi } = this.state;  
     return (
       <section className="card-warp mt-20">
         {/* 发布切换 */}
@@ -222,6 +238,35 @@ class TaskForm extends React.Component {
           <div>
             {/* 定时模块 */}
             {publishModel === 1 ? (<Timing />) : null}
+
+            {/* 文本消息来源是否开启接口数据获取，如果开启，显示API接口输入框  */ }
+            {msgTypeValue === 'text' ? (
+              <div className='d-flex justify-content-between align-items-center f-18'>
+              <div>是否开启文本API获取</div>
+            <Switch 
+              style={{ height:'100%'}}
+              checkedChildren="开启" 
+              unCheckedChildren="关闭"  
+              defaultChecked={isTextApi} 
+              onChange={(checked) => {this.setState({isTextApi:checked})}}
+            />
+            </div>) : null}
+            
+            {/* 文本消息来源输入 */}
+            <Input.Group  compact style={{ margin:'10px 1px 15px',display:isTextApi?'block':'none' }} >
+              <Input 
+                style={{ width: 'calc(100% - 70px)' }} 
+                defaultValue={TextApiValue} 
+                onChange={(e)=>{return this.props.TaskStore.TextApiValue = e.target.value}} 
+              />
+              <Button 
+                type="primary" 
+                onClick={ ()=>{return this.checkApi()} }
+              >检查</Button>
+              <div>
+                {this.state.ApiBody}
+              </div>
+            </Input.Group>
 
             {/* 提醒 */}
             <Select
@@ -246,7 +291,7 @@ class TaskForm extends React.Component {
             ) : null}
 
             {/* 文本类型 */}
-            {msgTypeValue === 'text' ? (<MsgText />) : null}
+            {msgTypeValue === 'text'&&isTextApi==false ? (<MsgText />) : null}
             {msgTypeValue === 'markdown' ? (<MsgMarkdown />) : null}
             {msgTypeValue === 'image' ? (<MsgImage />) : null}
             {msgTypeValue === 'news' ? (<MsgNews />) : null}
@@ -265,7 +310,6 @@ class TaskForm extends React.Component {
           </div>
         </div>
       </section>
-
     );
   }
 }

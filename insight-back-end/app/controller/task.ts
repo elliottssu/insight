@@ -19,9 +19,42 @@ export default class RobotController extends Controller {
   // 任务创建即时消息
   public async createMessage() {
     const { ctx } = this;
-    const { robotId, msgType, msgContent, remark, suite } = ctx.request.body;
+    var { robotId, msgType, msgContent, remark, suite,TextApiValue } = ctx.request.body;
     if (Util.emptyVaild(robotId, msgType, msgContent)) return ctx.body = Msg.error('数据不能为空');
+    //检查TextApiValue是否为空 不为空则是API内容模式
+    if(!Util.emptyVaild(TextApiValue)){
+      //发起请求 TextApiValue地址
+      var result = await  ctx.curl(TextApiValue,{
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
+      if(result.status == 200||202||201){
+        //
+        //msgContent处理成json
+        msgContent = JSON.parse(msgContent);
+        let data = eval('('+ result.data +')').data;
+        //将data这个json展开成字符串 递归深度无穷
+        let str = '';
+        function deep(data){
+          for(let i in data){
+            if(typeof data[i] == 'object'){
+              deep(data[i]);
+            }else{
+              str += i + ':' + data[i] + '\n';
+            }
+          }
+        }
+        deep(data);
 
+        //赋值给msgContent
+        msgContent.content = str;
+        msgContent = JSON.stringify(msgContent);
+      }else{
+        return ctx.body = Msg.error('外部API请求失败');
+      }
+    }
     let sendStatus;
     try {
       sendStatus = await ctx.service.cron.sendWechart(robotId, msgType, msgContent, suite, '0', Util.getUserId(ctx), -1, remark);
@@ -37,7 +70,7 @@ export default class RobotController extends Controller {
   // 任务创建定时消息
   public async createTask() {
     const { ctx } = this;
-    const { robotId, msgType, msgContent, suite, remark, cron, cronText, isWorkday } = ctx.request.body;
+    const { robotId, msgType, msgContent, suite, remark, cron, cronText, isWorkday,TextApiValue } = ctx.request.body;
     if (Util.emptyVaild(robotId, msgType, msgContent, cron, cronText, isWorkday)) return ctx.body = Msg.error('数据不能为空');
     if (!isWorkday && Util.emptyVaild(cron, cronText)) return ctx.body = Msg.error('数据不能为空');
 
@@ -47,6 +80,7 @@ export default class RobotController extends Controller {
       status: '1',
       suite: suite || '',
       remark: remark || '',
+      TextApiValue: TextApiValue || '',
     };
 
     let taskInfo;

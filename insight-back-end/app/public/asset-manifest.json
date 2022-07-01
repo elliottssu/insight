@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b867f260.chunk.css",
+    "main.js": "/static/js/main.9c886912.chunk.js",
+    "main.js.map": "/static/js/main.9c886912.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d2340cb6.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d2340cb6.js.map",
+    "static/css/2.97aca597.chunk.css": "/static/css/2.97aca597.chunk.css",
+    "static/js/2.cc6983bc.chunk.js": "/static/js/2.cc6983bc.chunk.js",
+    "static/js/2.cc6983bc.chunk.js.map": "/static/js/2.cc6983bc.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.8149661e27436c829b45f0729f294aec.js": "/precache-manifest.8149661e27436c829b45f0729f294aec.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.97aca597.chunk.css.map": "/static/css/2.97aca597.chunk.css.map",
+    "static/css/main.b867f260.chunk.css.map": "/static/css/main.b867f260.chunk.css.map",
+    "static/media/component.less": "/static/media/mars-texture.9e11dee3.jpg",
+    "static/media/s-loading.gif": "/static/media/s-loading.6a9cbe57.gif",
+    "static/media/s-off.gif": "/static/media/s-off.a951600d.gif",
+    "static/media/s-on.gif": "/static/media/s-on.f8a0534f.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d2340cb6.js",
+    "static/css/2.97aca597.chunk.css",
+    "static/js/2.cc6983bc.chunk.js",
+    "static/css/main.b867f260.chunk.css",
+    "static/js/main.9c886912.chunk.js"
+  ]
+}

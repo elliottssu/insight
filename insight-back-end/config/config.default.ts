@@ -17,12 +17,11 @@ export default (appInfo: EggAppInfo) => {
 
   config.typeorm = {
     type: 'mysql',
-    // ！！！！！请注意：请修改为自己的数据库配置，当前配置只是测试，随时有可能删除！！！！！！
-    host: '121.36.206.51',   // mysql数据库地址
+    host: 'localhost',   // mysql数据库地址
     port: 3306,             // mysql数据库端口
-    username: 'insight_demo_user',    // 用户名
-    password: 'insight2021_user', // 密码
-    database: 'insight_demo',    // 数据库
+    username: 'root',    // 用户名
+    password: '1q@W#E$R', // 密码
+    database: 'insight',    // 数据库
     synchronize: true,
     logging: true,
     entities: [ 'app/entity/**/*.ts' ],
@@ -48,9 +47,13 @@ export default (appInfo: EggAppInfo) => {
   };
 
   config.session = {
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 一周
+    maxAge: 365 * 24 * 60 * 60 * 1000, // one year
     renew: true,
   };
+
+  config.static = {
+    prefix:'/'
+  }
 
   // the return config will combines to EggAppConfig
   return {

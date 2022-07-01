@@ -58,4 +58,15 @@ export default {
       });
     });
   },
+
+  //api检查
+  checkApi(url) {
+    return new Promise((resolve, reject) => {
+      dataProxy.get(url,{headers:{'Content-Type': 'application/json','Access-Control-Allow-Origin': '*',}}).then((result) => {
+        resolve(result);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  }
 };

@@ -37,12 +37,8 @@ class MsgImage extends React.Component {
         />
         <div className="color-white-light mt-15 mb-6">
           <p className="mb-3px">
-            将图片转化为Md5，请点击
-                        <a rel="noopener noreferrer" href="https://md5file.com/calculator" target="_blank" className="a-main">这里</a>
-          </p>
-          <p className="mb-3px">
             将图片转化为Base64，请点击
-                        <a rel="noopener noreferrer" href="https://www.browserling.com/tools/file-to-base64" className="a-main" target="_blank">这里</a>
+                        <a rel="noopener noreferrer" href="https://www.css-js.com/tools/base64.html" className="a-main" target="_blank">这里</a>
           </p>
           <p>图片太大有可能会发送失败</p>
         </div>
